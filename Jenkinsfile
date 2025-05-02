@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven_3.9.9' // Ensure this matches the name of Maven in Jenkins Global Tool Configuration
-    }
+
 
     parameters {
         choice(name: 'BRANCH_NAME', choices: ['main', 'dev', 'feature'], description: 'Select Git branch to build.')
