@@ -6,13 +6,13 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'BRANCH_NAME', choices: ['master', 'dev', 'feature'], description: 'Select the Git branch to build.')
+        choice(name: 'BRANCH_NAME', choices: ['master', 'dev', 'main'], description: 'Select the Git branch to build.')
         choice(name: 'ENVIRONMENT', choices: ['qa', 'pp', 'uat', 'prod'], description: 'Select the deployment environment.')
     }
 
     environment {
-        JAVA_HOME = '/usr/lib/jvm/java-11-openjdk'  // Adjust to your Java version
-        MAVEN_HOME = '/opt/maven'                   // Adjust to your Maven installation path
+        JAVA_HOME = 'C:\Program Files\Java\jdk-17'  // Adjust to your Java version
+        MAVEN_HOME = 'E:\Sathya Nanjappan\Softwares\apache-maven-3.9.9-bin\apache-maven-3.9.9'                   // Adjust to your Maven installation path
     }
 
     stages {
