@@ -4,16 +4,18 @@ pipeline {
     triggers {
         githubPush()
     }
-   tools {
-        maven 'Maven_3.9.9'  // Matches the name in Jenkins global tool configuration
+
+    tools {
+        maven 'Maven_3.9.9'  // Name must match what's configured in Jenkins global tool config
     }
+
     parameters {
         choice(name: 'BRANCH_NAME', choices: ['master', 'dev', 'main'], description: 'Select the Git branch to build.')
         choice(name: 'ENVIRONMENT', choices: ['qa', 'pp', 'uat', 'prod'], description: 'Select the deployment environment.')
     }
 
     environment {
-        JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust to your Java version
+        JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust based on your installed JDK
     }
 
     stages {
@@ -25,18 +27,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean'
-                                sh 'mvn clean'
-
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Unit Tests') {
             steps {
                 bat 'mvn test'
-                                sh 'mvn test'
-
-                
             }
         }
 
@@ -65,7 +62,7 @@ pipeline {
     post {
         always {
             echo 'Post-build steps running...'
-            // e.g., clean workspace, notify teams, archive artifacts
+            // Cleanup or notification steps
         }
         success {
             echo 'Build and deployment succeeded!'
