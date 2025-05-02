@@ -12,7 +12,9 @@ pipeline {
 
     environment {
         JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust this path based on your JDK location
- MAVEN_HOME = '/opt/maven/bin/mvn'                   // Adjust to your Maven installation path    }
+        MAVEN_HOME = 'E:/Sathya Nanjappan/Softwares/apache-maven-3.9.9-bin/apache-maven-3.9.9'  // Correct Maven path for Windows
+        PATH = "${MAVEN_HOME}/bin;${JAVA_HOME}/bin;${env.PATH}"  // Add Maven and Java to PATH
+    }
 
     triggers {
         githubPush()  // Trigger build when there's a push on GitHub
