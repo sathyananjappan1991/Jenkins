@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools {
-        maven 'Maven_3.9.9'  // Name must match what's configured in Jenkins global tool config
+        maven 'Maven_3.9.9'  // Make sure this name matches Jenkins Global Tool Configuration
     }
 
     parameters {
@@ -15,7 +15,8 @@ pipeline {
     }
 
     environment {
-        JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust based on your installed JDK
+        JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust this path to match your actual JDK
+        PATH = "${JAVA_HOME}/bin;${PATH}"  // Ensure Java is in the PATH
     }
 
     stages {
@@ -61,14 +62,13 @@ pipeline {
 
     post {
         always {
-            echo 'Post-build steps running...'
-            // Cleanup or notification steps
+            echo 'Post-build cleanup or notifications...'
         }
         success {
-            echo 'Build and deployment succeeded!'
+            echo '✅ Build and deployment succeeded!'
         }
         failure {
-            echo 'Build or deployment failed.'
+            echo '❌ Build or deployment failed.'
         }
     }
 }
