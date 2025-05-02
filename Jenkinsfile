@@ -5,7 +5,7 @@ pipeline {
         githubPush()
     }
    tools {
-        maven 'Maven_3.9.9' // This should match the name you gave in Jenkins tool configuration
+        maven 'Maven_3.9.9'  // Matches the name in Jenkins global tool configuration
     }
     parameters {
         choice(name: 'BRANCH_NAME', choices: ['master', 'dev', 'main'], description: 'Select the Git branch to build.')
@@ -14,7 +14,6 @@ pipeline {
 
     environment {
         JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust to your Java version
-        MAVEN_HOME = 'E:/Sathya Nanjappan/Softwares/apache-maven-3.9.9-bin/apache-maven-3.9.9'                   // Adjust to your Maven installation path
     }
 
     stages {
@@ -26,13 +25,18 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat "${env.MAVEN_HOME}/bin/mvn clean"
+                bat 'mvn clean'
+                                sh 'mvn clean'
+
             }
         }
 
         stage('Unit Tests') {
             steps {
-                bat "${env.MAVEN_HOME}/bin/mvn test"
+                bat 'mvn test'
+                                sh 'mvn test'
+
+                
             }
         }
 
