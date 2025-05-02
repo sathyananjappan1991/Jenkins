@@ -4,7 +4,9 @@ pipeline {
     triggers {
         githubPush()
     }
-
+   tools {
+        maven 'Maven_3.9.9' // This should match the name you gave in Jenkins tool configuration
+    }
     parameters {
         choice(name: 'BRANCH_NAME', choices: ['master', 'dev', 'main'], description: 'Select the Git branch to build.')
         choice(name: 'ENVIRONMENT', choices: ['qa', 'pp', 'uat', 'prod'], description: 'Select the deployment environment.')
@@ -24,13 +26,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "${env.MAVEN_HOME}/bin/mvn clean"
+                bat "${env.MAVEN_HOME}/bin/mvn clean"
             }
         }
 
         stage('Unit Tests') {
             steps {
-                sh "${env.MAVEN_HOME}/bin/mvn test"
+                bat "${env.MAVEN_HOME}/bin/mvn test"
             }
         }
 
