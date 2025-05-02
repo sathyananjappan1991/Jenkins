@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "${env.MAVEN_HOME}/bin/mvn clean package -DskipTests"
+                sh "${env.MAVEN_HOME}/bin/mvn clean"
             }
         }
 
