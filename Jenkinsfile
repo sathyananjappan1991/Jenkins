@@ -11,8 +11,8 @@ pipeline {
     }
 
     environment {
-        JAVA_HOME = 'C:\Program Files\Java\jdk-17'  // Adjust to your Java version
-        MAVEN_HOME = 'E:\Sathya Nanjappan\Softwares\apache-maven-3.9.9-bin\apache-maven-3.9.9'                   // Adjust to your Maven installation path
+        JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust to your Java version
+        MAVEN_HOME = 'E:/Sathya Nanjappan/Softwares/apache-maven-3.9.9-bin/apache-maven-3.9.9'                   // Adjust to your Maven installation path
     }
 
     stages {
