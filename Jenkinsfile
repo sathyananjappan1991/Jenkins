@@ -5,9 +5,7 @@ pipeline {
         githubPush()
     }
 
-    tools {
-        maven 'Maven_3.9.9'  // Make sure this name matches Jenkins Global Tool Configuration
-    }
+   
 
     parameters {
         choice(name: 'BRANCH_NAME', choices: ['master', 'dev', 'main'], description: 'Select the Git branch to build.')
@@ -17,6 +15,7 @@ pipeline {
     environment {
         JAVA_HOME = 'C:/Program Files/Java/jdk-17'  // Adjust this path to match your actual JDK
         PATH = "${JAVA_HOME}/bin;${PATH}"  // Ensure Java is in the PATH
+         MAVEN_HOME = 'E:/Tools/apache-maven-3.2.5'                   // Adjust to your Maven installation path
     }
 
     stages {
